@@ -54,8 +54,8 @@ def age(date_de_naissance:date)->int :
     return int(x)#on l'arrondit au supperieur grace a int
     
 def est_majeur(date_de_naissance:date)-> bool:
-    if age(date_de_naissance)>=18:
-        return True
+    return age(date_de_naissance)>=18
+        
 
 def acces(date_de_naissance:date):
     if est_majeur(date_de_naissance):
