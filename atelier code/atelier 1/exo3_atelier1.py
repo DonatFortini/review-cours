@@ -1,16 +1,18 @@
 import math
 from random import randint
 
-
+#calcul le discriminant de trois réels
 def discriminant(a:float,b:float,c:float) -> float:
     if a ==0 or c==0:
         return b*b
     else:
         return b*b -4*a*c
-    
+
+# retourne la racine unique si le delta = 0   
 def racine_u(a:float,b:float) -> float:
     return b/2*a
 
+# retourne les deux racines dans un tableau si delta > 0
 def racine_double(a:float,b:float,delta:float,num:int) -> float:
     if a != 0 :
         x1= (-b+math.sqrt(delta))/(2*a)
@@ -23,6 +25,7 @@ def racine_double(a:float,b:float,delta:float,num:int) -> float:
         res=[x1,x2]
         return res[num-1]
 
+#permet de retourner une version formaté de l'equation
 def string_equa(a,b,c)->str:
     if a > 0 or a < 0:
         resultat = "{}x2".format(a)
@@ -41,7 +44,8 @@ def string_equa(a,b,c)->str:
         resultat = resultat.replace("+","",1)
     resultat = resultat + "=0"
     return resultat
-    
+
+# resous l'equation et retourne le resultat de facon stylisé   
 def sol_equa(a,b,c):
     m1=string_equa(a,b,c)
     delta=discriminant(a,b,c)

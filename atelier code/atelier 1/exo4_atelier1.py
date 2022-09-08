@@ -11,6 +11,7 @@ def bissextile(année:int) -> bool:
             return True
     return False
 
+#verifie si la date est possible dans un calendrier
 def date_est_valide(jour:int,mois:int,année:int) -> bool:
     mois31=[1,3,5,7,8,10,12]#je divise les mois en deux groupe et laisse
     mois30=[4,6,9,11]# à part fevrier pour traiter ses deux cas separement
@@ -27,6 +28,7 @@ def date_est_valide(jour:int,mois:int,année:int) -> bool:
         if mois>12 or année<0:return False
     return True
 
+# permet de retourner une date ecrite en int en format date
 def saisi_date_de_naissance(jour:int,mois:int,année:int) -> date:
     if date_est_valide(jour,mois,année):#on valide la date, si oui on la formatte
         return date(année,mois,jour)
@@ -42,7 +44,7 @@ def saisi_date_de_naissance(jour:int,mois:int,année:int) -> date:
             if date_est_valide(jour,mois,année):ok=True
         return date(année,mois,jour)
             
-
+#par difference avec la date d'auj ,retourne l'age
 def age(date_de_naissance:date)->int :
     comp=date.today()#date d'aujourd'hui
     x=str(comp-date_de_naissance)#on recupere le nombre de jours en str

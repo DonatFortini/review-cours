@@ -1,4 +1,4 @@
-
+#verifie qu'une année est bissextile
 def bissextile(année:int) -> bool:
     while année%1!=0:#pour verifier que l'année est bien un entier
         print("la proposition n'est pas un entier\n")
