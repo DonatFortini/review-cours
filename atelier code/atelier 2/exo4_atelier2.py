@@ -70,15 +70,21 @@ def tracé_histo(F:list) :
     print("TEST HISTOGRAME")
     print(f"F={F}\nHISTOGRAME\n")
     H=histo(F)
-    print(f"|---|",end='')
-    for i in range(len(F)-1):
-        print(" |---|",end='')
-    print("\n")
-    for i in range(len(F)):   
-        print(f"   {i}  ",end='')
+    
+    for i in range(val_max(H)): # je commence par la boucle de hauteur
+        for j in range(len(H)): # et la seconde s'occupe de la longeur
+            if (H[j] >= val_max(H)-i) : # la condition permet de print les colonne
+                print("  #  ",end='') #ligne par lignes un element par un 
+            else:
+                print('     ',end='')   #je print pour cree les espaces entre les valeurs
+        print() #pour casser le end line
+
+    for c in range(len(H)):
+        print(f'|-{c}-|',end='')
+    print() #pour casser le end line
 
 
-
+#F=[1,1,1,1,3,4,6,6,6,7,8,9]
 #F=[3,0,6,7,4,2,1,5]
 F=[9,2,5,4,4,2,0,2,8]
 #tracé_histo(F)
