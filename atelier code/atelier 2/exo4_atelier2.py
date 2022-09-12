@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-
 #je reeutilise deux fonction des precedent exercice pour compter les occurences
 # et determiner la valeur max 
 
@@ -22,7 +21,6 @@ def nb_occurence(L:list,e:int)->int:
                 compteur += 1
         return compteur
 
-
 ## Question 1
 
 #la fonction initialise H a la valeur max de la liste F +1 pour que H soit indicé
@@ -35,8 +33,6 @@ def histo(F:list)->list:
         H[element]=valeur #et les place au bon emplacement dans H
     return H
 
-
-
 # si l'histograme de la fonction a une valeur qui presente 
 # plus d'une fois alors la fonction renvois false
 def est_injective(F:list)->bool:
@@ -46,7 +42,6 @@ def est_injective(F:list)->bool:
             return False
     return True
 
-
 #definie si une fonction est surjective c-a-d si tout ses 
 #elements sont tout egaux à 1 ou plus
 def est_surjective(F:list)->bool:
@@ -55,7 +50,6 @@ def est_surjective(F:list)->bool:
         if element == 0: # il faut que tout les element soit = ou > à 1
             return False # donc si un seul est = à 0 on retourne false
     return True
-
 
 #la fonction est une fusion des deux precedente. Renvois true si bijective
 def est_bijective(F:list)-> bool:
@@ -82,7 +76,6 @@ def tracé_histo(F:list) :
     for c in range(len(H)):
         print(f'|-{c}-|',end='')
     print() #pour casser le end line
-
 
 #F=[1,1,1,1,3,4,6,6,6,7,8,9]
 #F=[3,0,6,7,4,2,1,5]
