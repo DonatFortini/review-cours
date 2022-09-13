@@ -201,9 +201,6 @@ def pos4(L, e) :
             Lres[j]= i
     return Lres
 
-
-
-
 test_pos(pos)
 print("\n")
 print("test p1")
