@@ -14,19 +14,22 @@ def mix_list(list_to_mix:list)->list:
         #et je le remove pour eviter les repetitions
     return retour
 
+
+#la fonction calcule temps d'execution d'une func passé en parametre pour un 
+#nombre d'iteration iter,et stock tout les resultat dans une liste
 def mesure(func:callable,iter:int,taille:list)->float:
     liste_temps=[]
     for i in range(len(taille)):
         temps=0
-        for j in range(iter):
-            list_rando=[i for i in range(taille[i])]
-            debut=time.perf_counter()
-            func(list_rando)
-            fin=time.perf_counter()
+        for j in range(iter):#genere une liste de taille taille[i] pour les
+            list_rando=[i for i in range(taille[i])]# iter tests à venir
+            debut=time.perf_counter()#demarre le chrono
+            func(list_rando)#execute la fonction
+            fin=time.perf_counter()#arrete le chrono 
             temps_total=fin-debut
             temps+=(temps_total)
-        liste_temps.append("{:.2e}".format(temps/iter))
-    return liste_temps
+        liste_temps.append(temps/iter)#"{:.2e}".format() pour l'ecriture
+    return liste_temps #scientifique mais c'est en str
 
 def perf_mix(func1:callable,func2:callable,taille_liste:list,nb_iteration:int)->tuple:
     result1=mesure(func1,nb_iteration,taille_liste)
@@ -36,20 +39,20 @@ def perf_mix(func1:callable,func2:callable,taille_liste:list,nb_iteration:int)->
 
 res1,res2=(perf_mix(mix_list,random.shuffle,[10,100,1000,10000],10))
 
+
 ##question 1
 
-def trace_cour(resultat1:list,resultat2:list):
-    resultat1=np.arange(resultat1)
-    resultat2=np.arange(resultat2)
+def trace_courbe(resultat1:list,resultat2:list):
+    resultat1=np.arange(resultat1[0],resultat1[-1],0.05)
+    resultat2=np.arange(resultat2[0],resultat2[-1],0.0005)
     fig, ax = plt.subplots()
     
-    ax.plot(resultat1,resultat1**2, 'r*-', label='fonction 1')
-    ax.plot(resultat2,resultat2**3,'g*-', label='function 2')
-    ax.set(xlabel='Abscisse x', ylabel='Ordonnée y',
-    title='Fonctions identité, cube et carré')
+    ax.plot(resultat1,resultat1**5, 'r*-', label='fonction 1')
+    ax.plot(resultat2,resultat2,'g*-', label='function 2')
+    ax.set(xlabel='temps execution en ms', ylabel='taille des listes',title='Comparaison de fonction')
     ax.legend(loc='upper center', shadow=True, fontsize='x-large')
     
     plt.show()
 
 
-trace_cour(res1,res2)
+trace_courbe(res1,res2)
