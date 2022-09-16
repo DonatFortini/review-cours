@@ -1,7 +1,15 @@
 import random
 
-#extrait 5 elements aleatoirement dans la liste et les stock dans la liste retour
 def extract_elements_list(list_in_which_to_choose:list, int_nbr_of_element_to_extract:int)->list:
+    """extrait n elements aleatoirement dans la liste et les stock dans la liste retour
+
+    Args:
+        list_in_which_to_choose (list): liste d'elem ordonnée de façon croissante
+        int_nbr_of_element_to_extract (int): nombre d'elements qu'on va prelever aléatoirement
+
+    Returns:
+        list: liste qui contient les elements prelevés
+    """
     utilisé=[item for item in range(len(list_in_which_to_choose))] #list de tout le nombre de 0 a len
     retour=[]
     for i in range(int_nbr_of_element_to_extract):# je crée 5 nombres aleatoire et dif entre eux

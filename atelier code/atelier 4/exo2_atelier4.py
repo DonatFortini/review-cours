@@ -2,6 +2,14 @@ import random
 from asserts import assert_true, assert_equal, assert_raises
 
 def mix_list(list_to_mix:list)->list:
+    """renvoit une version melangée de la liste de base
+
+    Args:
+        list_to_mix (list): liste trié de façon croisssante
+
+    Returns:
+        list: une version melangé de la liste de depart
+    """
     retour=list_to_mix.copy()#je copie la liste
     utilisé=[item for item in range(len(list_to_mix))]
     #  je stock les nombre de 0 a len
@@ -11,7 +19,6 @@ def mix_list(list_to_mix:list)->list:
         utilisé.remove(rand)#et l'affecte a retour[i] 
         #et je le remove pour eviter les repetitions
     return retour
-
 
 def test_mix(mix_list:callable):
     lst_sorted=[i for i in range(10)]
