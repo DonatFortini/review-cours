@@ -244,7 +244,7 @@ def trace_courbe(res2:list,res3:list,res4:list,res5:list,res6:list,res7:list):
         res6 (list): liste des moyenne de la fonction 7
     """
     fig, ax = plt.subplots()
-    taille=[10,100,500,1000]
+    taille=[10,100,500,1000,1500]
     #ax.plot(taille,res1, 'r*-', label='stupid')#impossible de demarrer avec lui
     ax.plot(taille,res2,'g*-', label='inser')
     ax.plot(taille,res3,'b*-', label='select')
@@ -258,14 +258,14 @@ def trace_courbe(res2:list,res3:list,res4:list,res5:list,res6:list,res7:list):
     
     plt.show()
 
-taille=[10,100,500,1000]
+taille=[10,100,500,1000,1500]
 #res1=mesure(stupid_sort,5,taille,1) le tri stupide est tellement long qu'il fait tout crash
-res2=mesure(tri_insertion,10,taille,1)
-res3=mesure(tri_selection,10,taille,1)
-res4=mesure(tri_bulle,10,taille,1)
-res5=mesure(tri_fusion,10,taille,1)
-res6=mesure(tri_base,10,taille,1)
-res7=mesure(sorted,10,taille,1)
+res2=mesure(tri_insertion,50,taille,1)
+res3=mesure(tri_selection,50,taille,1)
+res4=mesure(tri_bulle,50,taille,1)
+res5=mesure(tri_fusion,50,taille,1)
+res6=mesure(tri_base,50,taille,1)
+res7=mesure(sorted,50,taille,1)
 
 #config 1 
 trace_courbe(res2,res3,res4,res5,res6,res7)
