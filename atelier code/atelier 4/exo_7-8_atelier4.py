@@ -159,7 +159,7 @@ def tri_base(list_to_sort:list)->list:
         for i in range(len(list_var)):
             l_var[(list_var[i]%10**(exposant+1))//10**exposant].append(list_var[i])
         for h in range(len(l_var)):
-            resultat+=l_var[h]#on concatene pour recup une liste
+            resultat+=l_var[h]#on concatene pour recup une
 
         return resultat
 
