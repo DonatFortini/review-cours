@@ -139,7 +139,10 @@ def fusion(list_to_sort1:list,list_to_sort2:list)->list:
 ## question 6
 
 def tri_base(list_to_sort:list)->list:
-    """tri selon succesivement selon les unité , puis les dizaine , les centaine
+    """on cherche d'abord le max de la liste puis on le decompose en exposant
+    qui sera la borne max puis pour i a Max on tri lea liste successivement selon 
+    l'ordre croissant: des unitées,des dizaines puis des centaines
+    et retourne la liste triée dans l'ordre croissant
 
     Args:
         list_to_sort (list): liste à trier
@@ -149,29 +152,27 @@ def tri_base(list_to_sort:list)->list:
     """
     list_var=list_to_sort.copy()
     
-    def unite(numb:int)->int:
-        return numb%10 #retourne l'unite car 1024%10 -> 1000%10=0 + 20%10=0 + 4-> 4
-    
-    def dizaine(numb:int)->int:
-        return (numb%100)//10# meme principe , 1024-> 1000%100=0 +24%100=24 -> 24//10->2
+    def tri(list_var:list,exposant)->list:
+        l_var=[[],[],[],[],[],[],[],[],[],[]]# on y stockera les nombre selon le iemme chiffre de 0 à 9
+        resultat=[]
+        #l'incrementation de l'expo va permetre de faire unité puis dizaines,puis centaine
+        for i in range(len(list_var)):
+            l_var[(list_var[i]%10**(exposant+1))//10**exposant].append(list_var[i])
+        for h in range(len(l_var)):
+            resultat+=l_var[h]#on concatene pour recup une liste
 
-    def centaine(numb:int)->int:
-        return (numb-(numb%100))//100 #1024 - 1024%100=1000 ->1000//100=10
+        return resultat
 
-    for j in range(len(list_to_sort)-1):#ensuite on effectue un tri a bulle pour chaque critere
-        for i in range(len(list_to_sort)-1):
-            if unite(list_var[i])>unite(list_var[i+1]):
-                list_var[i],list_var[i+1]=list_var[i+1],list_var[i]
+    Max= max(list_to_sort)
+    i=0
+    while Max %10**i != Max:
+        i+=1
+    Max=i
+
+    for i in range(Max):
+        list_var=tri(list_var,i)
     
-    for j in range(len(list_to_sort)-1):
-        for i in range(len(list_to_sort)-1):
-            if dizaine(list_var[i])>dizaine(list_var[i+1]):
-                list_var[i],list_var[i+1]=list_var[i+1],list_var[i]
     
-    for j in range(len(list_to_sort)-1):
-        for i in range(len(list_to_sort)-1):
-            if centaine(list_var[i])>centaine(list_var[i+1]):
-                list_var[i],list_var[i+1]=list_var[i+1],list_var[i]
 
     return list_var
 
