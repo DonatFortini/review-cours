@@ -35,4 +35,12 @@ public class Vecteur3d {
     public String somme(Vecteur3d vect2){
         return "<"+(this.x+vect2.x)+","+(this.y+vect2.y)+","+(this.z+vect2.z)+">";
     }
+
+    public static String somme2(Vecteur3d vect1,Vecteur3d vect2){
+        return "<"+(vect1.x+vect2.x)+","+(vect1.y+vect2.y)+","+(vect1.z+vect2.z)+">";
+    }
+
+    public static double scalaire2(Vecteur3d vect1,Vecteur3d vect2){
+        return (vect1.x*vect2.x+vect1.y*vect2.y+vect1.z*vect2.z);
+    }
 }

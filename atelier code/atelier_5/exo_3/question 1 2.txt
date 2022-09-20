@@ -9,5 +9,5 @@ EXO2:
 1)c'est une methode de classe 
 2)l'instruction est incorrecte car compare a deux arg 
 3)methode de classe
-4) il faut ecrire st.lenght
+4) il faut ecrire st.lenght()
 
