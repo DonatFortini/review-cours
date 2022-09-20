@@ -25,15 +25,20 @@ public class TestDe {
         System.out.println(d3.equals(d5));
         System.out.println(d3.equals(d4));
         System.out.println("--------------------------------------------\n");
-        System.out.println(d3.lancerM());
-        System.out.println(d3.lancerM());
-        System.out.println(d3.lancerM());
-        System.out.println(d3.lancerM());
-        System.out.println(d3.lancerM());
-        System.out.println(d3.lancerM());
+        System.out.println(d3);
+        for(int i=0;i<5;i++){
+            System.out.println(d3.lancerM());
+        }
+        System.out.println("--------------------------------------------\n");
+        DePipe pipe=new DePipe("pipe",10,4);
+        System.out.println(pipe);
+        for(int i=0;i<5;i++){
+            System.out.println(pipe.lancer());
+        }
         System.out.println("--------------------------------------------\n");
         DeFaceAutre demot=new DeFaceAutre("dé_mot");
         System.out.println(demot);
+        System.out.println("--------------------------------------------\n");
         DeImpaire deimp=new DeImpaire("deImp", 9);
         System.out.println(deimp);
         for(int i=0;i<4;i++){

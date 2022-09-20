@@ -36,10 +36,17 @@ public class De {
     }
 
     public int GetNbfaces(){
+        /**
+         * @return renvoit le nombre de faces d'un dé
+         */
         return this.nb_faces;
     }
 
     public void SetNbfaces(int modif){
+        /**
+         * modifie le nombre de faces d'un dé
+         * @param modif le nouveau nombre de faces
+         */
         if (modif>INF && modif<SUP){
             this.nb_faces=modif;
         }
@@ -49,10 +56,17 @@ public class De {
     }
 
     public String GetNom(){
+        /**
+         * @return renvoit le nom d'un dé
+         */
         return this.nom;
     }
 
     public int lancer(){
+        /**
+         * renvoit un nombre aleatoire generer entre 0 et le nb_faces d'un dé
+         * @return renvoit un nombre aleatoire 
+         */
         Random rand =new Random();
         return rand.nextInt(0,this.GetNbfaces());
     }

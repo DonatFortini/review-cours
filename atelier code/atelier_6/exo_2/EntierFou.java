@@ -1,4 +1,4 @@
-package atelier_6.exo2;
+package atelier_6.exo_2;
 
 import java.util.Random;
 

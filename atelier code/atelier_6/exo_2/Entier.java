@@ -1,4 +1,4 @@
-package atelier_6.exo2;
+package atelier_6.exo_2;
 
 public class Entier {
     public final int inf,sup;
