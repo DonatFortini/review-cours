@@ -1,0 +1,13 @@
+EXO1:
+1)elle n'as pas d'attribut
+2)
+4)4 methodes Max une pour les 3 type de nombres(doubles int float)
+et une pour les long (le nombre en 2**63 etc)
+5) la 1 est fausse max prend deux argument, la deuxieme est correcte x=6
+
+EXO2:
+1)c'est une methode de classe 
+2)l'instruction est incorrecte car compare a deux arg 
+3)methode de classe
+4) il faut ecrire st.lenght
+
