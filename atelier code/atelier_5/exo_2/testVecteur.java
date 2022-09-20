@@ -1,7 +1,5 @@
 package atelier_5.exo_2;
 
-import atelier_5.exo_1.Robot;
-
 public class testVecteur {
     public static void main(String[] args) {
         Vecteur3d v1=new Vecteur3d("v1");
