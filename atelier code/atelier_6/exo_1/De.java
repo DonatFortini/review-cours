@@ -3,59 +3,48 @@ package atelier_6.exo_1;
 import java.util.Random;
 
 public class De {
-    private String nom;
-    private int nb_faces;
+    private final String nom;
+    private int nbFaces=6;
     private static final int INF=3;
     private static final int SUP=120;
-    private static int nb_de=0;
-    private int memoire;
+    private static int nbDe=0;
+    private static Random rand =new Random();
 
-    public De(String nom,int nb_faces){
+    public De(String nom,int nbFaces){
         this.nom=nom;
-        memoire=0;
-        if (nb_faces>SUP || nb_faces<INF){
-            System.err.println("nombre pas entre les borne");
-        }
-        else{
-            this.nb_faces=nb_faces;
-            nb_de+=1;
-        }
-    }
-
-    public De(){
-        nb_de+=1;
-        memoire=0;
-        this.nom="De"+nb_de;
-        this.nb_faces=6;
+        setNbFaces(nbFaces);
+        nbDe+=1;
     }
 
     public De(String nom){
-        nb_de+=1;
-        memoire=0;
-        this.nom=nom;
+        this(nom, 6);
     }
 
-    public int GetNbfaces(){
+    public De(){
+        this(("De"+nbDe));
+    }
+
+    public int getNbFaces(){
         /**
          * @return renvoit le nombre de faces d'un dé
          */
-        return this.nb_faces;
+        return this.nbFaces;
     }
 
-    public void SetNbfaces(int modif){
+    public void setNbFaces(int modif){
         /**
          * modifie le nombre de faces d'un dé
          * @param modif le nouveau nombre de faces
          */
         if (modif>INF && modif<SUP){
-            this.nb_faces=modif;
+            this.nbFaces=modif;
         }
         else{
             System.err.println("nombre pas entre les borne");
         }
     }
 
-    public String GetNom(){
+    public String getNom(){
         /**
          * @return renvoit le nom d'un dé
          */
@@ -64,40 +53,37 @@ public class De {
 
     public int lancer(){
         /**
-         * renvoit un nombre aleatoire generer entre 0 et le nb_faces d'un dé
+         * renvoit un nombre aleatoire generer entre 0 et le nbFaces d'un dé
          * @return renvoit un nombre aleatoire 
          */
-        Random rand =new Random();
-        return rand.nextInt(0,this.GetNbfaces());
+        return rand.nextInt(1,this.getNbFaces()+1);
     }
 
     public int lancer(int nb){
         int max=0;
-        Random rand =new Random();
+        int lancer=rand.nextInt(1,this.getNbFaces()+1);
         for(int i=0;i<nb;i++){
-            int r=rand.nextInt(3,this.GetNbfaces());
-            if (r>max){
-                max=r;
+            if (lancer== nbFaces){
+                return lancer;
             }
+            else if(lancer >max){
+                max=lancer;
+            }   
         }
         return max;
     }
 
     public String toString(){
-        return "Dé : "+GetNom()+" nombre de faces: "+GetNbfaces();
+        return "Dé : "+nom+" nombre de faces: "+nbFaces;
     }
 
-    public boolean equals(De autre){
-        return (GetNom()==autre.GetNom() && GetNbfaces()==autre.GetNbfaces());
-    }
-
-    public int lancerM(){
-        int a=lancer();
-        while (a == this.memoire){
-            a=lancer();
+    public boolean equals(Object autre){
+        if(autre!=null && autre instanceof De){
+            De objectDe=(De)autre;
+            return (this.nom.equals(objectDe.nom) && this.nbFaces==objectDe.nbFaces);
         }
-        this.memoire=a;
-        return a;
+        return false;
     }
+
 }
 

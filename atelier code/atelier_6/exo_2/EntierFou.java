@@ -3,7 +3,8 @@ package atelier_6.exo_2;
 import java.util.Random;
 
 public class EntierFou extends Entier {
-    int niv_folie;
+    private int niv_folie;
+    Random rand=new Random();
     
     public EntierFou(int inf,int sup,int valeur ,int niv_folie){
         super(inf, sup, valeur);
@@ -12,11 +13,14 @@ public class EntierFou extends Entier {
     }
 
     public void incremente(){
-        Random rand=new Random();
         int r=rand.nextInt(0,this.niv_folie);
         super.incremente(r);
     }
 
+    public void incremente(int n){
+        this.incremente();
+    }
+    
     public String toString(){
         return super.toString();
     }

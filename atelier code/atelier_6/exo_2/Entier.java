@@ -1,23 +1,23 @@
 package atelier_6.exo_2;
 
 public class Entier {
-    public final int inf,sup;
+    public final int INF,SUP;
     private int valeur;
     
-    public Entier(int inf ,int sup,int valeur){
-        this.inf=inf;
-        this.sup=sup;
+    public Entier(int INF ,int SUP,int valeur){
+        this.INF=INF;
+        this.SUP=SUP;
         this.valeur=valeur;
     }
 
-    public Entier(int inf ,int sup){
-        this.inf=inf;
-        this.sup=sup;
+    public Entier(int INF ,int SUP){
+        this.INF=INF;
+        this.SUP=SUP;
         valeur=0;
     }
 
     public void setValeur(int val){
-        if(val<getBorne()[0] || val>getBorne()[1] ){
+        if(val<INF || val>SUP ){
             System.err.println("valeur pas dans les bornes");
         }
         else{
@@ -26,27 +26,30 @@ public class Entier {
     }
 
     public int[] getBorne(){
-        int[] results={this.inf,this.sup};
+        int[] results={this.INF,this.SUP};
         return results;
     } 
 
     public void incremente(){
-        if((this.valeur + 1)<=getBorne()[1]){
-            this.valeur+=1;
-        }
+        incremente(1);
     }
 
     public void incremente(int n){
-        if((this.valeur+n)<=getBorne()[1]){
+        if((this.valeur+n)<=SUP){
             this.valeur+=n;
         }
     }
 
     public String toString(){
-        return "Borne: inf = "+this.inf+" sup = "+this.sup+" valeur = "+this.valeur;
+        return "Borne: INF = "+this.INF+" SUP = "+this.SUP+" valeur = "+this.valeur;
     }
 
-    public boolean equals(Entier autre){
-        return this.valeur==autre.valeur;
+    public boolean equals(Object autre){
+        if(autre!=null && autre instanceof Entier){
+            Entier objectDe=(Entier)autre;
+            return (this.valeur==objectDe.valeur && this.getBorne()==objectDe.getBorne());
+        }
+        return false;
+        
     }
 }

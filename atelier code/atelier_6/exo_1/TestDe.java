@@ -7,10 +7,10 @@ public class TestDe {
         De d3=new De("neufaces",9);
         System.out.println(d3);
         System.out.println(d1);
-        d2.SetNbfaces(2);
-        d2.SetNbfaces(8);
+        d2.setNbFaces(2);
+        d2.setNbFaces(8);
         System.out.println(d2);
-        d1.SetNbfaces(4);
+        d1.setNbFaces(4);
         System.out.println("--------------------------------------------\n");
         System.out.println(d1.lancer());
         System.out.println(d2.lancer());
@@ -25,9 +25,9 @@ public class TestDe {
         System.out.println(d3.equals(d5));
         System.out.println(d3.equals(d4));
         System.out.println("--------------------------------------------\n");
-        System.out.println(d3);
+        DeMemoire d6 =new DeMemoire("demem",9);
         for(int i=0;i<5;i++){
-            System.out.println(d3.lancerM());
+            System.out.println(d6.lancer());
         }
         System.out.println("--------------------------------------------\n");
         DePipe pipe=new DePipe("pipe",10,4);

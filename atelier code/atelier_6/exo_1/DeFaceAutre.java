@@ -8,7 +8,7 @@ public class DeFaceAutre extends De {
 
     public DeFaceAutre(String nom){
         super(nom);
-        this.SetNbfaces(faces);
+        this.setNbFaces(faces);
     }
 
     public int lancer(){
