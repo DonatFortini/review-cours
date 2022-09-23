@@ -17,25 +17,36 @@ public class TestEntreprise {
         GregorianCalendar greg2=new GregorianCalendar(1980,8,20);
         Adresse add2=new Adresse("20137", "5 rue jean pierre", "Porto-vecchio");
         
-        Personne p1=new Personne("turlu", "tutu", greg, add);
+        Personne p0=new Personne("turlu", "tutu", greg, add);
+        Personne p1=new Personne("turlu", "tutu", greg1, add1);
         Personne p2=new Personne("turlu", "toto", greg1, add1);
         Personne p3=new Personne("turlu", "tata", greg2, add2);
-        p1=Employe.createEmploye(p1);
-        p2=Employe.createEmploye(p2);
+        Employe emp0=Employe.createEmploye(p0);
+        Employe emp1=Employe.createEmploye(p1);
 
-        System.out.println(p1);
-        System.out.println(p2);
+        System.out.println(emp0);
+        System.out.println(emp1);
 
-        Secretaire ed=Secretaire.createSecretaire(p2);
-        Manager de=Manager.createManager(p3);
+        Secretaire secretaire=Secretaire.createSecretaire(p2);
+        Manager manager=Manager.createManager(p3);
 
-        System.out.println(ed);
-        System.out.println(de);
+        System.out.println(secretaire);
+        System.out.println(manager);
 
-        Manager.ajouterSecretaire(de, ed);
-        ed.affichListeManager();
+        Manager.ajouterSecretaire(manager, secretaire);
+        secretaire.affichListeManager();
 
-        Manager.supprimerSecretaire(de, ed);
-        ed.affichListeManager();
+        Manager.supprimerSecretaire(manager, secretaire);
+        secretaire.affichListeManager();
+
+        Manager.ajouterSecretaire(manager, secretaire);
+
+        secretaire.augmenterLeSalaire(10);
+        manager.augmenterLeSalaire(10);
+        emp1.augmenterLeSalaire(10);
+
+        System.out.println(secretaire);
+        System.out.println(manager);
+        System.out.println(emp1);
     }
 }
