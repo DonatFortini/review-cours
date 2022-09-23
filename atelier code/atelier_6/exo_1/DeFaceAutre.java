@@ -4,7 +4,7 @@ package atelier_6.exo_1;
 
 public class DeFaceAutre extends De {
     private static final String[] LISTE_MOT={ "Gagné", "Perdu", "Relancez", "Passez votre tour" };
-    private int faces=4;
+    private int faces=LISTE_MOT.length;
 
     public DeFaceAutre(String nom){
         super(nom);
