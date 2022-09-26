@@ -24,6 +24,6 @@ public class testPersonne {
 
         System.out.println(p1.equals(p3));
 
-        System.out.println(Personne.quelAge(p1));
+        System.out.println(Personne.quelAge(p1.getDateNaissance()));
     }
 }

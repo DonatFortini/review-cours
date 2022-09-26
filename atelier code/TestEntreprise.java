@@ -7,6 +7,14 @@ import java.util.GregorianCalendar;
 
 public class TestEntreprise {
     public static void main(String[] args) {
+        /*
+         * pour des raison de test la date du jour est rentrable en parametre,mais,
+         * dans des condition reeles on mettra directement la date 
+         * (date du jour ou on instancit le constructeur)
+         *  dans le constructeur pour eviter les fraudes
+         */
+
+        GregorianCalendar dateDuJour=new GregorianCalendar();
         
         GregorianCalendar greg=new GregorianCalendar(2010,7,20);
         Adresse add=new Adresse("20137", "5 rue jean pierre", "Porto-vecchio");
@@ -17,29 +25,28 @@ public class TestEntreprise {
         GregorianCalendar greg2=new GregorianCalendar(1980,8,20);
         Adresse add2=new Adresse("20137", "5 rue jean pierre", "Porto-vecchio");
         
-        Personne p0=new Personne("turlu", "tutu", greg, add);
-        Personne p1=new Personne("turlu", "tutu", greg1, add1);
-        Personne p2=new Personne("turlu", "toto", greg1, add1);
-        Personne p3=new Personne("turlu", "tata", greg2, add2);
-        Employe emp0=Employe.createEmploye(p0);
-        Employe emp1=Employe.createEmploye(p1);
+
+
+
+        Employe emp0=Employe.createEmploye("turlu", "tutu", greg, add,1200,dateDuJour);
+        Employe emp1=Employe.createEmploye("mama", "mommo", greg1, add1,1200,dateDuJour);
 
         System.out.println(emp0);
         System.out.println(emp1);
 
-        Secretaire secretaire=Secretaire.createSecretaire(p2);
-        Manager manager=Manager.createManager(p3);
+        Secretaire secretaire=Secretaire.createSecretaire("tati", "toto", greg1, add1,1200,dateDuJour);
+        Manager manager=Manager.createManager("fil", "depech", greg2, add2,1200,greg1);
 
         System.out.println(secretaire);
         System.out.println(manager);
 
-        Manager.ajouterSecretaire(manager, secretaire);
+        manager.ajouterSecretaire(secretaire);
         secretaire.affichListeManager();
 
-        Manager.supprimerSecretaire(manager, secretaire);
+        manager.supprimerSecretaire(secretaire);
         secretaire.affichListeManager();
 
-        Manager.ajouterSecretaire(manager, secretaire);
+        manager.ajouterSecretaire(secretaire);
 
         secretaire.augmenterLeSalaire(10);
         manager.augmenterLeSalaire(10);

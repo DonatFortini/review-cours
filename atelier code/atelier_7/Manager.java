@@ -3,17 +3,16 @@ import java.util.LinkedList;
 import java.util.GregorianCalendar;
 
 public class Manager extends Employe{
-    private LinkedList<Secretaire> secretaires;
-    private static GregorianCalendar dateDuJour=new GregorianCalendar();
+    private Secretaire maSecretaire=null;
+    
 
     private Manager(String nom,String prenom,GregorianCalendar ddn,Adresse add,double salaire,GregorianCalendar dateEmbauche){
         super(nom,prenom,ddn,add,salaire,dateEmbauche);
-        secretaires=new LinkedList<Secretaire>();
     }
 
-    public static Manager createManager(Personne personne){
-        if(Personne.quelAge(personne)>16 && Personne.quelAge(personne)<65){
-            return new Manager(personne.getNom(),personne.getPrenom(),personne.getDateNaissance(),personne.getAdresse(),1200.0,dateDuJour);
+    public static Manager createManager(String nom,String prenom,GregorianCalendar ddn,Adresse add,double salaire,GregorianCalendar dateEmbauche){
+        if(ageCorrect(ddn)){
+            return new Manager(nom,prenom,ddn,add,salaire,dateEmbauche);
         }
         return null;
     }
@@ -22,17 +21,21 @@ public class Manager extends Employe{
         super.augmenterLeSalaire((pourcentage+(0.5)*this.calculAnnuite()));
     }
 
-    public static void ajouterSecretaire(Manager p1 ,Secretaire p2){
-        if(p1.secretaires.isEmpty() && Secretaire.getNbManager(p2)<5){
-            p1.secretaires.add(p2);
-            p2.ajouterManager(p1);
+    public void ajouterSecretaire(Secretaire secretaire){
+        if(maSecretaire==null && secretaire.getNbManager()<5){
+            maSecretaire=secretaire;
+            secretaire.ajouterManager(this);
         }
     }
 
-    public static void supprimerSecretaire(Manager p1 ,Secretaire p2){
-        if(p1.secretaires.contains(p2)){
-            p1.secretaires.remove(p2);
-            p2.supprimerManager(p1);
+    public void supprimerSecretaire(Secretaire secretaire){
+        if(maSecretaire.equals(secretaire)){
+            maSecretaire=null;
+            secretaire.supprimerManager(this);
         }
+    }
+
+    public Secretaire getSecretaire(){
+        return maSecretaire;
     }
 }

@@ -107,17 +107,17 @@ public class Personne{
 		return false;
 	}
 
-	public static int quelAge(Personne perso){
+	public static int quelAge(GregorianCalendar ddn){
 		GregorianCalendar dateDuJour=new GregorianCalendar();
-		int depart =perso.dateNaissance.get(perso.dateNaissance.YEAR);
+		int depart =ddn.get(ddn.YEAR);
 		int arrive= dateDuJour.get(dateDuJour.YEAR);
 		int age=arrive-depart-1;
-		if (perso.dateNaissance.get(perso.dateNaissance.MONTH)==dateDuJour.get(dateDuJour.MONTH)){
-			if(perso.dateNaissance.get(perso.dateNaissance.DAY_OF_MONTH)>=dateDuJour.get(dateDuJour.DAY_OF_MONTH)){
+		if (ddn.get(ddn.MONTH)==dateDuJour.get(dateDuJour.MONTH)){
+			if(ddn.get(ddn.DAY_OF_MONTH)>=dateDuJour.get(dateDuJour.DAY_OF_MONTH)){
 				age+=1;
 			}
 		}
-		else if(perso.dateNaissance.get(perso.dateNaissance.MONTH)<dateDuJour.get(dateDuJour.MONTH)){
+		else if(ddn.get(ddn.MONTH)<dateDuJour.get(dateDuJour.MONTH)){
 			age+=1;
 		}
 

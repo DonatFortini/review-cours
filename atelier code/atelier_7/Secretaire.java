@@ -4,16 +4,16 @@ import java.util.GregorianCalendar;
 
 public class Secretaire extends Employe{
     private LinkedList<Manager> listeManager;
-    private static GregorianCalendar dateDuJour=new GregorianCalendar();
+    
 
     private Secretaire(String nom,String prenom,GregorianCalendar ddn,Adresse add,double salaire,GregorianCalendar dateEmbauche){
         super(nom,prenom,ddn,add,salaire,dateEmbauche);
         listeManager=new LinkedList<Manager>();
     }
 
-    public static Secretaire createSecretaire(Personne personne){
-        if(Personne.quelAge(personne)>16 && Personne.quelAge(personne)<65){
-            return new Secretaire(personne.getNom(),personne.getPrenom(),personne.getDateNaissance(),personne.getAdresse(),1200.0,dateDuJour);
+    public static Secretaire createSecretaire(String nom,String prenom,GregorianCalendar ddn,Adresse add,double salaire,GregorianCalendar dateEmbauche){
+        if(ageCorrect(ddn)){
+            return new Secretaire(nom,prenom,ddn,add,salaire,dateEmbauche);
         }
         return null;
     }
@@ -24,9 +24,12 @@ public class Secretaire extends Employe{
         }
     }
 
-    public void supprimerManager(Manager personne){
-        if(listeManager.contains(personne)){
-            listeManager.remove(personne);
+    public void supprimerManager(Manager manager){
+        if(listeManager.contains(manager)){
+            listeManager.remove(manager);
+            if(manager.getSecretaire()!=null){
+                manager.supprimerSecretaire(this);
+            }
         }
     }
 
@@ -38,7 +41,7 @@ public class Secretaire extends Employe{
         super.augmenterLeSalaire((pourcentage+(0.1)*listeManager.size()));
     }
 
-    public static int getNbManager(Secretaire personne){
-        return personne.listeManager.size();
+    public int getNbManager(){
+        return listeManager.size();
     }
 }
