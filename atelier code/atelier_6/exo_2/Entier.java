@@ -11,9 +11,7 @@ public class Entier {
     }
 
     public Entier(int INF ,int SUP){
-        this.INF=INF;
-        this.SUP=SUP;
-        valeur=0;
+        this(INF,SUP,0);
     }
 
     public void setValeur(int val){
