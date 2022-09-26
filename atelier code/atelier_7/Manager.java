@@ -1,5 +1,5 @@
 package atelier_7;
-import java.util.LinkedList;
+
 import java.util.GregorianCalendar;
 
 public class Manager extends Employe{

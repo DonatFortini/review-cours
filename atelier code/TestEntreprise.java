@@ -1,5 +1,4 @@
 import atelier_7.Adresse;
-import atelier_7.Personne;
 import atelier_7.Employe;
 import atelier_7.Secretaire;
 import atelier_7.Manager;
