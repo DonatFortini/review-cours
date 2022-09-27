@@ -56,7 +56,7 @@ public class De {
          * renvoit un nombre aleatoire generer entre 0 et le nbFaces d'un dé
          * @return renvoit un nombre aleatoire 
          */
-        return rand.nextInt(1,this.getNbFaces()+1);
+        return rand.nextInt(1,this.nbFaces+1);
     }
 
     public int lancer(int nb){
