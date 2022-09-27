@@ -19,8 +19,9 @@ public class Secretaire extends Employe{
     }
 
     public void ajouterManager(Manager personne){
-        if(listeManager.size()<5){
+        if(listeManager.size()<5 && !(listeManager.contains(personne))){
             listeManager.add(personne);
+            personne.ajouterSecretaire(this);
         }
     }
 
