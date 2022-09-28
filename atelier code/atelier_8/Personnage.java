@@ -20,6 +20,10 @@ public abstract class Personnage {
         return this.position;
     }
 
+    public int getAge(){
+        return age;
+    }
+
     public void setPropriaitaire(Joueur j){
         proprietaire=j;
     }
