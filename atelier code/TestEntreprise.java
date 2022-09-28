@@ -45,7 +45,9 @@ public class TestEntreprise {
         manager.supprimerSecretaire(secretaire);
         secretaire.affichListeManager();
 
-        manager.ajouterSecretaire(secretaire);
+        secretaire.ajouterManager(manager);
+        System.out.println(manager.getSecretaire());
+        secretaire.affichListeManager();
 
         secretaire.augmenterLeSalaire(10);
         manager.augmenterLeSalaire(10);

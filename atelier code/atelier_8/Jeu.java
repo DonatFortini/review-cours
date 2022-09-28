@@ -5,14 +5,17 @@ import java.lang.Math;
 
 
 public class Jeu {
+    //j'ai modif certaine valeur pour equilibrer le jeu
     private String titre;
     public final int NB_JOUEUR_MAX=6;
-    public final int NB_CASE=50;
+    public final int NB_CASE=100;
     private ArrayList<Joueur> listJoueurs=new ArrayList<>();
     private Case cases[]=new Case[NB_CASE];
     private int nbEtapes;
     private int nbObstacles;
     private static int scoreMax=0;
+    private boolean changer=false;
+    private int ancien;
 
     public Jeu(String titre,int nbEtapes,int nbObstacles){
         this.titre=titre;
@@ -45,7 +48,7 @@ public class Jeu {
             int GAIN=(int)(Math.random()*NB_CASE);
             if(GAIN%5==0 &&  var< nbObstacles){
                 var++;
-                Obstacle obs=new Obstacle(GAIN*2);
+                Obstacle obs=new Obstacle(GAIN/2);
                 cases[i]=new Case(GAIN, obs);
             }
             else{
@@ -84,7 +87,7 @@ public class Jeu {
                 int pos=tousLesPerso().get(i).positionSouhaitee();
                 if(tousLesPerso().get(i).getPosition()==NB_CASE-1){
                     cases[NB_CASE-1].enleverPersonnage();
-                    tousLesPerso().get(i).deplacer(0, cases[0].GAIN);;
+                    tousLesPerso().get(i).deplacer(pos%NB_CASE, cases[pos%NB_CASE].GAIN);;
                 }else{
                     if(tousLesPerso().get(i).getPosition()+pos>NB_CASE-1){
                         tousLesPerso().get(i).deplacer(NB_CASE-1,cases[NB_CASE-1].GAIN);
@@ -100,7 +103,7 @@ public class Jeu {
                                 tousLesPerso().get(i).penaliser(cases[pos].getPenalite());
                             }
                             else if (!(cases[pos].sansPerso())){
-                                tousLesPerso().get(i).penaliser(-cases[pos].GAIN);
+                                tousLesPerso().get(i).penaliser(-(cases[pos].GAIN)/2);
                             }
                         }
                     }
@@ -109,9 +112,12 @@ public class Jeu {
             }
             deroulement++;
         }
-      
+        
         if (gagnant()[1]>scoreMax){
+            ancien=scoreMax;
             scoreMax=gagnant()[1];
+            changer=true;
+            
         }
         afficherResultat();
     }
@@ -131,14 +137,16 @@ public class Jeu {
     }
 
     public void afficherResultat(){
-        afficherCases();
+        //afficherCases();
         afficherParticipants();
         System.out.println("JEU "+titre);
         System.out.println("*************************************");
         System.out.println("RESULATS");
         System.out.println("Le gagnant est "+listJoueurs.get(gagnant()[0]));
+        if(changer){
+            System.out.println("Record battu: Ancien score maximum "+ancien);
+        }
         
-        System.out.println("Record battu: Ancien score maximum "+scoreMax);
     
         
     }
