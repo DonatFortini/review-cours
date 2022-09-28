@@ -48,7 +48,7 @@ public class Jeu {
             int GAIN=(int)(Math.random()*NB_CASE);
             if(GAIN%5==0 &&  var< nbObstacles){
                 var++;
-                Obstacle obs=new Obstacle(GAIN/2);
+                Obstacle obs=new Obstacle(GAIN*2);
                 cases[i]=new Case(GAIN, obs);
             }
             else{
@@ -73,7 +73,7 @@ public class Jeu {
     public void lancerJeu(){
         int deroulement=0;
         initialiserCases();
-
+        //afficherCases();
         for(int i=0;i<tousLesPerso().size();i++){
             int j=0;
             while (!(cases[j].estLibre())){
@@ -103,7 +103,7 @@ public class Jeu {
                                 tousLesPerso().get(i).penaliser(cases[pos].getPenalite());
                             }
                             else if (!(cases[pos].sansPerso())){
-                                tousLesPerso().get(i).penaliser(-(cases[pos].GAIN)/2);
+                                tousLesPerso().get(i).penaliser(-cases[pos].GAIN);
                             }
                         }
                     }
