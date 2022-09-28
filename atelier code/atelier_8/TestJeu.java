@@ -13,6 +13,7 @@ public class TestJeu {
             at8.ajouterJoueur(paul);
             at8.ajouterJoueur(lucien);
             at8.lancerJeu();
+           
         }
     }
     

@@ -12,21 +12,16 @@ public abstract class Personnage {
     }
 
     public void deplacer(int destination ,int gain){
-        if(Case.estLibre()){
-            if(Case.sansObstacle()){
-                this.position=destination;
-                proprietaire.modifPoint(gain);
-            }
-            else{
-                proprietaire.modifPoint(gain);
-            }
-            
-        }
+        this.position=destination;
         proprietaire.modifPoint(gain);
     }
 
     public int getPosition(){
         return this.position;
+    }
+
+    public void setPropriaitaire(Joueur j){
+        proprietaire=j;
     }
 
     public void penaliser(int nb){

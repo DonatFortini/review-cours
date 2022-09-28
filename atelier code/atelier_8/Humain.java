@@ -1,8 +1,8 @@
 package atelier_8;
 
 public class Humain extends Personnage {
-    private static int nbDeplacement;
-    private static int niveau;
+    private  int nbDeplacement;
+    private  int niveau;
 
     public Humain(String nom,int age){
         super(nom, age);

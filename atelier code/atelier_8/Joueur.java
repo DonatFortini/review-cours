@@ -6,19 +6,25 @@ public class Joueur {
     private String code="J";
     private static int nbJoueur=0;
     private int nbPoint=0;
-    private  ArrayList <Personnage> listePerso;
+    private  ArrayList <Personnage> listePerso =new ArrayList<>();
 
     public Joueur(String nom){
         nbJoueur+=1;
         this.nom=nom;
         code+=nbJoueur;
-        ArrayList listePerso=new ArrayList<Personnage>();
     }
 
     public void ajouterPersonnage(Personnage p){
-        if (!(this.listePerso.contains(p))){
+        if(!(this.listePerso.isEmpty())){
+            if (!(this.listePerso.contains(p))){
+                this.listePerso.add(p);
+                p.setPropriaitaire(this);
+            } 
+        }else{
             this.listePerso.add(p);
+            p.setPropriaitaire(this);
         }
+        
     }
 
     public ArrayList<Personnage> getList(){

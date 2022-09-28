@@ -1,5 +1,6 @@
 package atelier_8;
 import java.util.ArrayList;
+import java.lang.Math;
 
 
 
@@ -7,11 +8,11 @@ public class Jeu {
     private String titre;
     public final int NB_JOUEUR_MAX=6;
     public final int NB_CASE=50;
-    private ArrayList<Joueur> listJoueurs;
+    private ArrayList<Joueur> listJoueurs=new ArrayList<>();
     private Case cases[]=new Case[NB_CASE];
     private int nbEtapes;
     private int nbObstacles;
-    private static int scoreMax;
+    private static int scoreMax=0;
 
     public Jeu(String titre,int nbEtapes,int nbObstacles){
         this.titre=titre;
@@ -20,9 +21,12 @@ public class Jeu {
     }
 
     public void ajouterJoueur(Joueur j){
-        if(listJoueurs.size()<6 && !(listJoueurs.contains(j))){
-            listJoueurs.add(j);
-        }
+        if(!(listJoueurs.isEmpty())){
+            if(listJoueurs.size()<6 && !(listJoueurs.contains(j))){
+                listJoueurs.add(j);
+            } 
+        }else{listJoueurs.add(j);}
+        
     }
 
     public ArrayList<Personnage> tousLesPerso(){
@@ -38,7 +42,7 @@ public class Jeu {
     public void initialiserCases(){
         int var=0;
         for(int i=0;i<NB_CASE;i++){
-            int GAIN=(int)Math.random()*NB_CASE;
+            int GAIN=(int)(Math.random()*NB_CASE);
             if(GAIN%5==0 &&  var< nbObstacles){
                 var++;
                 Obstacle obs=new Obstacle(GAIN*2);
@@ -66,39 +70,54 @@ public class Jeu {
     public void lancerJeu(){
         int deroulement=0;
         initialiserCases();
+
         for(int i=0;i<tousLesPerso().size();i++){
-            
+            int j=0;
+            while (!(cases[j].estLibre())){
+                j++;
+            }
+            tousLesPerso().get(i).deplacer(j,cases[j].GAIN);
+            cases[j].placerPersonnage(tousLesPerso().get(i));
         }
         while (deroulement<nbEtapes){
             for(int i=0;i<tousLesPerso().size();i++){
                 int pos=tousLesPerso().get(i).positionSouhaitee();
                 if(tousLesPerso().get(i).getPosition()==NB_CASE-1){
-                    tousLesPerso().remove(tousLesPerso().get(i));
+                    cases[NB_CASE-1].enleverPersonnage();
+                    tousLesPerso().get(i).deplacer(0, cases[0].GAIN);;
                 }else{
-                    if(tousLesPerso().get(i).getPosition()+pos>NB_CASE){
+                    if(tousLesPerso().get(i).getPosition()+pos>NB_CASE-1){
                         tousLesPerso().get(i).deplacer(NB_CASE-1,cases[NB_CASE-1].GAIN);
-                    }
-                    if(cases[pos].estLibre()){
-                        tousLesPerso().get(i).deplacer(pos, cases[pos].GAIN);
-                    }
-                    else{
-                        if(!(cases[pos].sansObstacle())){
-                            tousLesPerso().get(i).penaliser(cases[pos].getPenalite());
+                        cases[NB_CASE-1].placerPersonnage(tousLesPerso().get(i));
+                    }else{
+                        if(cases[pos].estLibre()){
+                            cases[tousLesPerso().get(i).getPosition()].enleverPersonnage();
+                            tousLesPerso().get(i).deplacer(pos, cases[pos].GAIN);
+                            cases[pos].placerPersonnage(tousLesPerso().get(i));
                         }
-                        else if (!(cases[pos].sansPerso())){
-                            tousLesPerso().get(i).penaliser(-cases[pos].GAIN);
+                        else{
+                            if(!(cases[pos].sansObstacle())){
+                                tousLesPerso().get(i).penaliser(cases[pos].getPenalite());
+                            }
+                            else if (!(cases[pos].sansPerso())){
+                                tousLesPerso().get(i).penaliser(-cases[pos].GAIN);
+                            }
                         }
                     }
+                    
                 }
             }
             deroulement++;
         }
-        scoreMax=gagnant()[1];
+      
+        if (gagnant()[1]>scoreMax){
+            scoreMax=gagnant()[1];
+        }
         afficherResultat();
     }
 
     public void afficherCases(){
-        for(int i=0;i<NB_CASE;i++){
+        for(int i=0;i<NB_CASE-1;i++){
             System.out.println("Case "+i+" : "+cases[i]);
         }
     }
@@ -112,12 +131,16 @@ public class Jeu {
     }
 
     public void afficherResultat(){
+        afficherCases();
         afficherParticipants();
         System.out.println("JEU "+titre);
         System.out.println("*************************************");
         System.out.println("RESULATS");
         System.out.println("Le gagnant est "+listJoueurs.get(gagnant()[0]));
+        
         System.out.println("Record battu: Ancien score maximum "+scoreMax);
+    
+        
     }
 
 
