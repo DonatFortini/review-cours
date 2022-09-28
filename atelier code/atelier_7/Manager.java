@@ -18,10 +18,7 @@ public class Manager extends Employe{
     }
 
     public void augmenterLeSalaire(double pourcentage){
-        for(int i=0;i<calculAnnuite();i++){
-            super.augmenterLeSalaire(0.5);
-        }
-        super.augmenterLeSalaire((pourcentage));
+        super.augmenterLeSalaire((pourcentage+0.5*calculAnnuite()));
     }
 
     public void ajouterSecretaire(Secretaire secretaire){
