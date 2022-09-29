@@ -59,14 +59,24 @@ public class Jeu {
 
     public int[] gagnant(){
         int max=0;
-        int[] gagnant=new int[2];
+        int[] gagnants=new int[listJoueurs.size()+1];
         for(int i=0;i<listJoueurs.size();i++){
             if(listJoueurs.get(i).getNbPoint()>max){
                 max=listJoueurs.get(i).getNbPoint();
-                gagnant[0]=i;
-                gagnant[1]=max;
             }
         }
+        int k=0;
+        for(int j=0;j<listJoueurs.size();j++){
+            if(listJoueurs.get(j).getNbPoint()==max){
+                gagnants[k]=j;
+                k++;
+            }
+        }
+        int[] gagnant=new int[k+1];
+        for(int h=0;h<k;h++){
+            gagnant[h]=gagnants[h];
+        }
+        gagnant[gagnant.length-1]=max;
         return gagnant;
     }
 
@@ -113,9 +123,9 @@ public class Jeu {
             deroulement++;
         }
         
-        if (gagnant()[1]>scoreMax){
+        if (gagnant()[gagnant().length-1]>scoreMax){
             ancien=scoreMax;
-            scoreMax=gagnant()[1];
+            scoreMax=gagnant()[gagnant().length-1];
             changer=true;
             
         }
@@ -145,7 +155,8 @@ public class Jeu {
         System.out.println("JEU "+titre);
         System.out.println("*************************************");
         System.out.println("RESULATS");
-        System.out.println("Le gagnant est "+listJoueurs.get(gagnant()[0]));
+        System.out.println("Gagnant(s)  : "); 
+        for(int i=0;i<gagnant().length-1;i++){System.out.println(listJoueurs.get(gagnant()[i])) ;};
         if(changer){
             System.out.println("Record battu: Ancien score maximum "+ancien);
         }
