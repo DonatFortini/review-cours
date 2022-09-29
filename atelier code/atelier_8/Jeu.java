@@ -138,7 +138,10 @@ public class Jeu {
 
     public void afficherResultat(){
         //afficherCases();
+        System.out.println("\n");
+
         afficherParticipants();
+
         System.out.println("JEU "+titre);
         System.out.println("*************************************");
         System.out.println("RESULATS");
